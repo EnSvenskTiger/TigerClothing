@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using TigerClothing.Data;
+
 namespace TigerClothing
 {
     public class Program
@@ -8,6 +11,10 @@ namespace TigerClothing
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(
+            builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
